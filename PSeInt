@@ -1,0 +1,119 @@
+Algoritmo Ejercicio_Cooperativo
+	Definir usuario, pass Como cadena
+	Definir login Como Logico
+	Definir cont, op, botellas, i, botellasGr, botellasGrTotal, acepta, saldo, saldoTotal, B Como Entero
+	
+	//Validacion de usuario y contraseña
+	cont=3
+	login=falso
+	Mientras login=falso Hacer
+		Escribir "Ingrese el usuario"
+		Leer usuario
+		Si usuario="Albus_D" Entonces
+			login=Verdadero				
+		SiNo
+			login=falso			
+		Fin Si
+		si (login=falso) Entonces
+			Escribir "Los datos ingresados no son correctos"
+			Escribir ""
+		FinSi	
+	Fin Mientras
+	login=falso
+	Mientras (cont>0 Y login=falso) Hacer		
+		Escribir "Ingrese la contraseña"
+		Leer pass
+		Si usuario="Albus_D" Entonces
+			login=Verdadero
+			Si pass="caramelosDeLimon" Entonces
+				login=Verdadero
+			SiNo
+				login=falso				
+			Fin Si
+		SiNo
+			login=falso			
+		Fin Si
+		cont=cont-1
+		si (login=falso) Entonces
+			Escribir "Los datos ingresados no son correctos"
+			Escribir "Te quedan ", cont " intentos"
+		FinSi				
+	Fin Mientras	
+	si (cont=3 Y login=falso) Entonces
+		Escribir "Ya no tienes mas intentos"		
+    FinSi
+	//Menu de opciones
+	saldo=0
+	saldoTotal=0
+	si (login=Verdadero) Entonces
+		Repetir
+			Escribir "ingrese una opcion"
+			Escribir "1- Ingresar botellas"
+			Escribir "2- Consultar saldos"
+			Escribir "3- Salir"
+			Leer op
+			//Menu botellas
+			Si op=1 Entonces
+				Escribir "ingrese la cantidad de boletellas"
+				Leer botellas
+				botellasGrTotal=0
+				Para i=1 Hasta botellas Con Paso 1 Hacer
+					botellasGr=Aleatorio(100,3000)
+					botellasGrTotal=botellasGrTotal+botellasGr
+				Fin Para
+				Escribir "El peso total es: ", botellasGrTotal, "gr"
+				Si botellasGrTotal<500 Entonces
+					B=1
+				Fin Si
+				Si botellasGrTotal>501 y botellasGrTotal<1500 Entonces
+					B=2
+				Fin Si
+				Si botellasGrTotal>1501 Entonces
+					B=3
+				Fin Si
+				Segun B Hacer
+					1:
+						Escribir "El valor por los ", botellasGrTotal, "gr es $50"
+						Escribir "¿Acepta?"
+						Escribir "1- SI"
+						Escribir "2- NO"
+						Leer acepta
+						Si acepta=1 Entonces
+							Escribir "El monto fue acreditado"
+							saldo=50
+						SiNo
+							Escribir "Devolviendo material"
+						Fin Si
+					2:
+						Escribir "El valor por los ", botellasGrTotal, "gr es $125"
+						Escribir "¿Acepta?"
+						Escribir "1- SI"
+						Escribir "2- NO"
+						Leer acepta
+						Si acepta=1 Entonces
+							Escribir "El monto fue acreditado"
+							saldo=125
+						SiNo
+							Escribir "Devolviendo material"
+						Fin Si					
+					3:
+						Escribir "El valor por los ", botellasGrTotal, "gr es $200"
+						Escribir "¿Acepta?"
+						Escribir "1- SI"
+						Escribir "2- NO"
+						Leer acepta
+						Si acepta=1 Entonces
+							Escribir "El monto fue acreditado"
+							saldo=200
+						SiNo
+							Escribir "Devolviendo material"
+						Fin Si	
+				Fin Segun
+			Fin Si
+			Si op=2 Entonces
+				saldoTotal=saldoTotal+saldo
+				Escribir "El saldo que tiene es: $", saldoTotal			
+			Fin Si
+		Mientras Que op<>3
+    FinSi
+FinAlgoritmo
