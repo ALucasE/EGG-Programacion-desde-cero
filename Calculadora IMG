@@ -1,0 +1,47 @@
+# Calculadora de Masa Corporal
+
+# IMC = Peso / (Altura x Altura)
+# Menor a 19 Delgadez
+# Entre 20 y 25 Normal
+# Entre 25 y 30 Sobrepeso
+# Mayor a 30 Obesidad
+
+
+def calulo_imc():
+    peso = float(input('Ingrese su peso en Kg: '))
+    Altura_CM = int(input('Igrese su altura en centimetros: '))
+    Altura_M = Altura_CM / 100
+    imc = peso / (Altura_M * Altura_M)
+
+    print(f'Su IMC es de {imc:.2f}')
+    if (imc < 20):
+        print('Estado de delgadez')
+    if imc >= 20 and imc < 26:
+        print('Estado normal')
+    if imc >= 26 and imc < 30:
+        print('Estado Sobrepeso')
+    if imc > 30:
+        print('Estado de Obesidad')
+
+    PESOIDEAL1 = 20 * (Altura_M * Altura_M)
+    PESOIDEAL2 = 26 * (Altura_M * Altura_M)
+
+    print(f'Su peso ideal es entre {PESOIDEAL1:.2f} y {PESOIDEAL2:.2f}')
+
+print('Caluladora de Indice de masa corporal')
+calulo_imc()
+op=False
+while op==False:    
+    print('Desea hacer otro calculo?')
+    print('1) SI')
+    print('2) NO')
+    opc=int(input('Ingrese una opcion: '))
+    if opc==1:
+        calulo_imc()
+        op=False
+    elif opc==2:
+        print('Hasta luego.')
+        op=True
+    else:
+        print('Opcion incorrecta')
+        op=False
