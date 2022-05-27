@@ -1,0 +1,105 @@
+from operator import truediv
+import os
+import random
+
+USER='Albus_D'
+PASS='CDL'
+INGRESAR_BOTELLA=1
+SALDO=2
+SALIR=0
+SI=1
+NO=0
+login=False
+
+
+
+def autenticacion():
+    user = input('Ingrese el nombre de usuario: ')
+    password = input('Ingrese la contraseña: ')
+    cont=3
+    
+    while user!=USER and cont!=0:
+        os.system('cls')
+        cont-=1
+        login=False
+        print('Usuario incorrecto')
+        print(f'Te quedan {cont} intentos')         
+        user = input('Ingrese el nombre de usuario: ')
+          
+    while password!=PASS and cont!=0:              
+        os.system('cls')
+        cont-=1
+        login=False
+        print('Contraseña incorrecta')
+        print(f'Te quedan {cont} intentos')
+        password = input('Ingrese la contraseña: ')
+    else:
+        os.system('cls')
+        login=True
+    return login
+
+def menu():
+    print(f'''                   Bienvenido al sistema de reciclaje de botellas
+{INGRESAR_BOTELLA}) Ingresar botella
+{SALDO}) Consultar Saldo
+{SALIR}) Salir
+''')
+
+def ingresar_botellas():
+    os.system('cls')
+    saldo=0
+    print('                 Selecciono para ingresar botellas a la recicladora')
+    valor=0
+    cantidad_botellas=int(input('¿Cuantas botellas desea ingresar?: '))
+    total_botellas=0
+    for i in range(cantidad_botellas):
+        botellas=random.randint(100,3000)
+        total_botellas=total_botellas+botellas
+    if total_botellas<500:
+        valor=50
+    elif 501<total_botellas<1500:
+        valor=125
+    elif 1501<total_botellas:
+        valor=200
+    print(f'''Las {cantidad_botellas} botellas ingresadas tienen un peso 
+total de {total_botellas}gr por un valor de {valor}
+{SI}) ACEPTAR
+{NO}) CANCELAR
+''')
+    op=int(input('Ingrese la una opcion: '))
+    if op==SI:
+        saldo = saldo + valor 
+        print(f'Saldo a sumar es ${saldo}')
+        input('Precione enter para continuar...')
+    elif op==NO:       
+        print(f'Devolviendo material: {cantidad_botellas} botellas fueron regresadas')
+        input('Precione enter para continuar...')        
+    else:
+        print('Opcion incorrecta')
+        op=int(input('Ingresa una opcion correcta: '))
+    return saldo
+
+os.system('cls')
+print('                     Bienvenido')
+print('Ingese sus datos para ingresar al programa')
+if autenticacion()==True:
+    print('Ingresando al programa....')
+    bandera=False    
+    saldoTotal=0
+    while bandera==False:
+        os.system('cls')
+        menu()
+        opc=int(input('Ingresa una opcion: '))
+        if opc == INGRESAR_BOTELLA:
+            saldoTotal=saldoTotal+ingresar_botellas()
+        elif opc == SALDO:            
+            print(f'Su saldo es ${saldoTotal}')
+            input('Precione enter para continuar...')
+        elif opc == SALIR:
+            bandera=True
+        else:
+            print('Opcion incorrecta')
+            opc=int(input('Ingresa una opcion correcta: '))    
+else:
+    print('Intente nuevamente mas tarde')
+print('Saliendo del sistema')
